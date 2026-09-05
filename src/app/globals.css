@@ -1,26 +1,241 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #f3efe6;
+  --paper-deep: #e8e1d4;
+  --ink: #141210;
+  --ink-soft: #2c2823;
+  --muted: #6d675e;
+  --muted-2: #8a8378;
+  --line: #ddd4c6;
+  --line-strong: #cfc5b4;
+  --surface: #fffaf2;
+  --surface-2: #f7f1e6;
+  --teal: #0e6e68;
+  --teal-bright: #1aa394;
+  --teal-soft: #d4ece8;
+  --teal-ink: #073834;
+  --copper: #c45c26;
+  --copper-soft: #f3ddd0;
+  --gold: #c9a05a;
+  --gold-soft: #f3e6c8;
+  --dark: #0b0a09;
+  --dark-2: #151311;
+  --dark-3: #1e1b18;
+  --dark-line: rgba(247, 241, 228, 0.1);
+  --cream: #f7f1e4;
+  --shadow-card: 0 1px 0 rgba(20, 18, 16, 0.04),
+    0 18px 40px -24px rgba(20, 18, 16, 0.28);
+  --shadow-lift: 0 1px 0 rgba(20, 18, 16, 0.05),
+    0 22px 50px -20px rgba(20, 18, 16, 0.32);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-muted-2: var(--muted-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-teal: var(--teal);
+  --color-teal-bright: var(--teal-bright);
+  --color-teal-soft: var(--teal-soft);
+  --color-teal-ink: var(--teal-ink);
+  --color-copper: var(--copper);
+  --color-copper-soft: var(--copper-soft);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-dark: var(--dark);
+  --color-dark-2: var(--dark-2);
+  --color-dark-3: var(--dark-3);
+  --color-dark-line: var(--dark-line);
+  --color-cream: var(--cream);
   --font-sans: var(--font-geist-sans);
+  --font-display: var(--font-plus-jakarta);
   --font-mono: var(--font-geist-mono);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  letter-spacing: -0.011em;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--teal) 28%, white);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 3px;
+}
+
+a[href],
+button:not(:disabled),
+summary,
+select:not(:disabled),
+label[for],
+input[type="button"]:not(:disabled),
+input[type="submit"]:not(:disabled),
+input[type="reset"]:not(:disabled),
+input[type="checkbox"]:not(:disabled),
+input[type="radio"]:not(:disabled),
+input[type="file"]:not(:disabled),
+[role="button"]:not([aria-disabled="true"]),
+[role="link"],
+[role="menuitem"],
+[role="tab"],
+[role="option"],
+[role="switch"],
+[role="checkbox"],
+nav a,
+.breadcrumb a {
+  cursor: pointer;
+}
+
+button:disabled,
+[aria-disabled="true"],
+a[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+.font-display {
+  font-family: var(--font-display), var(--font-geist-sans), ui-sans-serif, system-ui,
+    sans-serif;
+}
+
+.bg-grain {
+  position: relative;
+}
+
+.bg-grain::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--ink) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--ink) 6%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.bg-grid-dark {
+  background-image:
+    linear-gradient(to right, rgba(247, 241, 228, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(247, 241, 228, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+}
+
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(247, 241, 228, 0.28),
+    rgba(26, 163, 148, 0.28) 42%,
+    rgba(196, 92, 38, 0.18) 78%,
+    rgba(247, 241, 228, 0.08)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, #f7f1e4 0%, #d4ece8 52%, #c9a05a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(64px);
+  pointer-events: none;
+}
+
+.float-slow {
+  animation: float-y 7.5s var(--ease-out) infinite alternate;
+}
+
+.float-slower {
+  animation: float-y 10s var(--ease-out) infinite alternate-reverse;
+}
+
+@keyframes float-y {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.85);
+  }
+}
+
+.pulse-dot {
+  animation: pulse-dot 2.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .float-slow,
+  .float-slower,
+  .pulse-dot,
+  .orb-drift {
+    animation: none !important;
+  }
 }
