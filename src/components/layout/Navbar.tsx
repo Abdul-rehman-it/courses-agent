@@ -66,8 +66,8 @@ export function Navbar() {
           className={cn(
             "pointer-events-auto flex h-[58px] items-center justify-between rounded-[16px] border px-3 transition-[background-color,border-color,box-shadow,color,backdrop-filter] duration-300 sm:h-[62px] sm:px-4",
             darkBar
-              ? "border-white/10 bg-dark/35 backdrop-blur-md"
-              : "border-line/80 bg-paper/95 shadow-[0_10px_40px_-24px_rgba(20,18,16,0.45)] backdrop-blur-xl",
+              ? "border-white/10 bg-dark/35 text-white backdrop-blur-md"
+              : "border-line/80 bg-paper/95 text-ink shadow-[0_10px_40px_-24px_rgba(20,18,16,0.45)] backdrop-blur-xl",
           )}
         >
           <Link
@@ -123,14 +123,22 @@ export function Navbar() {
               className={cn(
                 "lg:hidden",
                 darkBar
-                  ? "text-cream hover:bg-white/8"
+                  ? "text-white hover:bg-white/10"
                   : "text-ink hover:bg-ink/6",
               )}
               aria-expanded={open}
               aria-controls="mobile-nav"
               onClick={() => setOpen((value) => !value)}
             >
-              {open ? <X size={20} strokeWidth={1.75} /> : <Menu size={20} strokeWidth={1.75} />}
+              {open ? (
+                <X size={20} strokeWidth={1.75} className="text-ink" />
+              ) : (
+                <Menu
+                  size={20}
+                  strokeWidth={1.75}
+                  className={darkBar ? "text-white" : "text-ink"}
+                />
+              )}
             </IconButton>
           </div>
         </div>

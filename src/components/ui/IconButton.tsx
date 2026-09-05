@@ -18,7 +18,7 @@ export function IconButton({
       type={type}
       aria-label={label}
       className={cn(
-        "inline-flex size-11 cursor-pointer items-center justify-center rounded-[12px] border border-transparent text-current transition-colors duration-200 hover:bg-ink/6",
+        "inline-flex size-11 cursor-pointer items-center justify-center rounded-[12px] border border-transparent transition-colors duration-200 [&_svg]:stroke-current",
         className,
       )}
       {...props}
