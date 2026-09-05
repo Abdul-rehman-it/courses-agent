@@ -7,7 +7,7 @@ import { whatsappHref } from "@/lib/site";
 import { FormEvent, useMemo, useState } from "react";
 
 const fieldClass =
-  "h-12 cursor-text rounded-[12px] border border-line bg-surface px-3.5 text-[0.95rem] text-ink outline-none transition-colors hover:border-line-strong focus:border-teal";
+  "h-12 cursor-text rounded-[12px] border border-line bg-surface px-3.5 text-base text-ink outline-none transition-colors hover:border-line-strong focus:border-teal sm:text-[0.95rem]";
 
 type ContactFormProps = {
   defaultCourse?: string;
@@ -70,7 +70,7 @@ export function ContactForm({ defaultCourse = "" }: ContactFormProps) {
           name="message"
           required
           rows={4}
-          className="min-h-[120px] cursor-text resize-y rounded-[12px] border border-line bg-surface px-3.5 py-3 text-[0.95rem] text-ink outline-none transition-colors hover:border-line-strong focus:border-teal"
+          className="min-h-[120px] cursor-text resize-y rounded-[12px] border border-line bg-surface px-3.5 py-3 text-base text-ink outline-none transition-colors hover:border-line-strong focus:border-teal sm:text-[0.95rem]"
           placeholder="Tell me which course you want, and I’ll get back to you."
         />
       </label>

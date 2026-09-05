@@ -58,7 +58,7 @@ export function Select({
         aria-expanded={open}
         aria-controls={listId}
         className={cn(
-          "flex h-12 w-full cursor-pointer items-center gap-3 rounded-[12px] border bg-surface px-3.5 text-left text-[0.95rem] text-ink outline-none transition-colors",
+          "flex h-12 w-full cursor-pointer items-center gap-3 rounded-[12px] border bg-surface px-3.5 text-left text-base text-ink outline-none transition-colors sm:text-[0.95rem]",
           open ? "border-teal" : "border-line hover:border-line-strong focus:border-teal",
         )}
         onClick={() => setOpen((current) => !current)}
@@ -118,7 +118,7 @@ export function Select({
                     }}
                   >
                     <span className="min-w-0 flex-1">
-                      <span className="block truncate text-[0.95rem] font-medium">
+                      <span className="block truncate text-base font-medium sm:text-[0.95rem]">
                         {option.label}
                       </span>
                       {option.hint ? (
