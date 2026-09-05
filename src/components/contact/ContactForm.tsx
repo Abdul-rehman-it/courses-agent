@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/Button";
 import { Select } from "@/components/ui/Select";
 import { courses } from "@/lib/content";
-import { site } from "@/lib/site";
+import { whatsappHref } from "@/lib/site";
 import { FormEvent, useMemo, useState } from "react";
 
 const fieldClass =
@@ -35,20 +35,16 @@ export function ContactForm({ defaultCourse = "" }: ContactFormProps) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const name = String(data.get("name") ?? "").trim();
-    const email = String(data.get("email") ?? "").trim();
     const message = String(data.get("message") ?? "").trim();
-    const subject = selectedTitle
-      ? `Course inquiry: ${selectedTitle}`
-      : "Course inquiry";
     const body = [
+      `Hi, I want to enquire about Lumina.`,
       `Name: ${name}`,
-      `Email: ${email}`,
       `Course: ${selectedTitle || "Not selected"}`,
       "",
       message,
     ].join("\n");
 
-    window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(whatsappHref(body), "_blank", "noopener,noreferrer");
     setSent(true);
   }
 
@@ -57,16 +53,6 @@ export function ContactForm({ defaultCourse = "" }: ContactFormProps) {
       <label className="grid gap-1.5 text-sm">
         <span className="font-medium text-ink">Name</span>
         <input name="name" required autoComplete="name" className={fieldClass} />
-      </label>
-      <label className="grid gap-1.5 text-sm">
-        <span className="font-medium text-ink">Email</span>
-        <input
-          name="email"
-          type="email"
-          required
-          autoComplete="email"
-          className={fieldClass}
-        />
       </label>
       <div className="grid gap-1.5 text-sm">
         <span className="font-medium text-ink">Course</span>
@@ -93,9 +79,14 @@ export function ContactForm({ defaultCourse = "" }: ContactFormProps) {
       </Button>
       {sent ? (
         <p className="text-sm text-muted">
-          Your email app should open with a message to{" "}
-          <a href={`mailto:${site.email}`} className="cursor-pointer text-teal">
-            {site.email}
+          WhatsApp should open with your message. If it doesn’t, tap{" "}
+          <a
+            href={whatsappHref()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer text-teal"
+          >
+            here
           </a>
           .
         </p>

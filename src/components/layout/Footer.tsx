@@ -1,7 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { courses } from "@/lib/content";
-import { site } from "@/lib/site";
-import { Mail } from "lucide-react";
+import { site, whatsappHref } from "@/lib/site";
+import { Phone } from "lucide-react";
 import Link from "next/link";
 
 export function Footer() {
@@ -47,13 +47,14 @@ export function Footer() {
               Contact
             </p>
             <a
-              href={`mailto:${site.email}`}
-              className="mt-4 inline-flex max-w-full min-w-0 cursor-pointer items-center gap-2 text-sm text-cream/70 hover:text-cream"
+              href={whatsappHref()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex cursor-pointer items-center gap-2 text-sm text-cream/70 hover:text-cream"
             >
-              <Mail size={15} strokeWidth={1.75} className="shrink-0" />
-              <span className="min-w-0 break-all">{site.email}</span>
+              <Phone size={15} strokeWidth={1.75} className="shrink-0" />
+              {site.phone}
             </a>
-            <p className="mt-2 text-sm text-cream/50">{site.phone}</p>
           </div>
         </div>
         <div className="mt-10 border-t border-cream/8 pt-5 text-xs text-cream/40">

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { IconButton } from "@/components/ui/IconButton";
 import { cn } from "@/lib/cn";
-import { navLinks, site } from "@/lib/site";
+import { navLinks, site, whatsappHref } from "@/lib/site";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
@@ -92,26 +92,40 @@ export function Navbar() {
             className="hidden items-center gap-1 lg:flex"
             aria-label="Primary"
           >
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  "cursor-pointer rounded-[10px] px-3 py-2 text-sm transition-colors",
-                  darkBar
-                    ? "text-cream hover:bg-white/6 hover:text-white"
-                    : "text-ink-soft hover:bg-ink/5 hover:text-ink",
-                )}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const className = cn(
+                "cursor-pointer rounded-[10px] px-3 py-2 text-sm transition-colors",
+                darkBar
+                  ? "text-cream hover:bg-white/6 hover:text-white"
+                  : "text-ink-soft hover:bg-ink/5 hover:text-ink",
+              );
+
+              if (link.external) {
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={className}
+                  >
+                    {link.label}
+                  </a>
+                );
+              }
+
+              return (
+                <Link key={link.href} href={link.href} className={className}>
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="flex items-center gap-2">
             <div className="hidden sm:block">
               <Button
-                href="/#contact"
+                href={whatsappHref()}
                 size="sm"
                 variant={darkBar ? "on-dark" : "primary"}
               >
@@ -159,19 +173,39 @@ export function Navbar() {
                 aria-label="Mobile"
                 className="rounded-[18px] border border-line bg-surface p-3 shadow-[var(--shadow-lift)]"
               >
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className="flex min-h-12 cursor-pointer items-center rounded-[12px] px-3 text-[1.02rem] text-ink hover:bg-paper"
-                    onClick={() => setOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+                {navLinks.map((link) => {
+                  const className =
+                    "flex min-h-12 cursor-pointer items-center rounded-[12px] px-3 text-[1.02rem] text-ink hover:bg-paper";
+
+                  if (link.external) {
+                    return (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={className}
+                        onClick={() => setOpen(false)}
+                      >
+                        {link.label}
+                      </a>
+                    );
+                  }
+
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={className}
+                      onClick={() => setOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  );
+                })}
                 <div className="mt-2 border-t border-line pt-3">
                   <Button
-                    href="/#contact"
+                    href={whatsappHref()}
                     className="w-full"
                     onClick={() => setOpen(false)}
                   >

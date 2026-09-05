@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { whatsappHref } from "@/lib/site";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
@@ -79,7 +80,7 @@ export function Hero() {
                 View courses
                 <ArrowRight size={16} strokeWidth={1.75} />
               </Button>
-              <Button href="/#contact" variant="on-dark-ghost" size="lg">
+              <Button href={whatsappHref()} variant="on-dark-ghost" size="lg">
                 Contact
               </Button>
             </motion.div>

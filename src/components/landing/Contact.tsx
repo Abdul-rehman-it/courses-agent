@@ -1,8 +1,8 @@
 import { ContactForm } from "@/components/contact/ContactForm";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
-import { site } from "@/lib/site";
-import { Mail, Phone } from "lucide-react";
+import { site, whatsappHref } from "@/lib/site";
+import { Phone } from "lucide-react";
 
 export function Contact() {
   return (
@@ -24,19 +24,14 @@ export function Contact() {
               Ask about a course.
             </h2>
             <p className="mt-4 max-w-sm text-muted">
-              Dummy contact details for now — send a message and it will open an
-              email to this inbox.
+              Dummy number for now — tap it or send a message and WhatsApp will
+              open.
             </p>
             <div className="mt-8 grid gap-3">
               <a
-                href={`mailto:${site.email}`}
-                className="inline-flex max-w-full min-w-0 cursor-pointer items-center gap-3 rounded-[14px] border border-line bg-paper px-4 py-3 text-ink hover:border-line-strong"
-              >
-                <Mail size={18} strokeWidth={1.75} className="shrink-0" />
-                <span className="min-w-0 break-all">{site.email}</span>
-              </a>
-              <a
-                href={site.phoneHref}
+                href={whatsappHref()}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex cursor-pointer items-center gap-3 rounded-[14px] border border-line bg-paper px-4 py-3 text-ink hover:border-line-strong"
               >
                 <Phone size={18} strokeWidth={1.75} />

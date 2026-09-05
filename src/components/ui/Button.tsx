@@ -52,8 +52,29 @@ export function Button(props: ButtonProps) {
   const classes = cn(base, variants[variant], sizes[size], className);
 
   if ("href" in props && props.href) {
+    const { href, onClick } = props;
+    const external =
+      href.startsWith("http://") ||
+      href.startsWith("https://") ||
+      href.startsWith("mailto:") ||
+      href.startsWith("tel:");
+
+    if (external) {
+      return (
+        <a
+          href={href}
+          className={classes}
+          onClick={onClick}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {children}
+        </a>
+      );
+    }
+
     return (
-      <Link href={props.href} className={classes} onClick={props.onClick}>
+      <Link href={href} className={classes} onClick={onClick}>
         {children}
       </Link>
     );

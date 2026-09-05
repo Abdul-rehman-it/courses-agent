@@ -3,8 +3,8 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { courses, getCourse, type Course } from "@/lib/content";
-import { site } from "@/lib/site";
-import { Check, ChevronRight, Clock, Mail } from "lucide-react";
+import { site, whatsappHref } from "@/lib/site";
+import { Check, ChevronRight, Clock, Phone } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -160,15 +160,24 @@ export default async function CoursePage({ params }: PageProps) {
                   {course.duration} · {course.level}
                 </p>
               </div>
-              <Button href="#enroll" className="mt-6 w-full">
+              <Button
+                href={whatsappHref(
+                  `Hi, I want to enquire about the ${course.title} course.`,
+                )}
+                className="mt-6 w-full"
+              >
                 Enquire now
               </Button>
               <a
-                href={`mailto:${site.email}?subject=${encodeURIComponent(`Course inquiry: ${course.title}`)}`}
+                href={whatsappHref(
+                  `Hi, I want to enquire about the ${course.title} course.`,
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="mt-3 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-[12px] border border-line py-2.5 text-sm text-ink hover:bg-paper"
               >
-                <Mail size={16} strokeWidth={1.75} />
-                {site.email}
+                <Phone size={16} strokeWidth={1.75} />
+                {site.phone}
               </a>
             </div>
           </aside>
@@ -186,7 +195,7 @@ export default async function CoursePage({ params }: PageProps) {
             Get in touch about {course.title}
           </h2>
           <p className="mt-2 max-w-xl text-muted">
-            Send a message and it will open an email to {site.email}.
+            Send a message and WhatsApp will open.
           </p>
           <div className="mt-6 max-w-xl">
             <ContactForm defaultCourse={course.id} />
