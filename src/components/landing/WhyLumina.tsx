@@ -13,14 +13,14 @@ const points = [
 export function WhyLumina() {
   return (
     <section
-      className="bg-surface py-16 sm:py-20"
+      className="overflow-x-clip bg-surface py-16 sm:py-20"
       aria-labelledby="why-heading"
     >
       <Container>
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-          <Reveal>
-            <div className="relative overflow-hidden rounded-[22px]">
-              <div className="relative aspect-[5/4] w-full min-h-[280px] sm:min-h-[320px] lg:min-h-[360px]">
+        <div className="grid min-w-0 items-center gap-10 lg:grid-cols-2 lg:gap-14">
+          <Reveal className="min-w-0">
+            <div className="relative w-full overflow-hidden rounded-[22px]">
+              <div className="relative aspect-[5/4] w-full max-w-full">
                 <Image
                   src="/images/mentor-session.jpg"
                   alt="A mentor guiding a student through digital skills practice"
@@ -32,7 +32,7 @@ export function WhyLumina() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.08}>
+          <Reveal delay={0.08} className="min-w-0">
             <p className="text-[0.72rem] font-medium uppercase tracking-[0.18em] text-teal">
               Why Lumina
             </p>

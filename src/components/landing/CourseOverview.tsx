@@ -8,7 +8,7 @@ export function CourseOverview() {
   return (
     <section
       id="courses"
-      className="scroll-mt-24 bg-paper py-16 sm:py-20"
+      className="scroll-mt-24 overflow-x-clip bg-paper py-16 sm:py-20"
       aria-labelledby="courses-heading"
     >
       <Container>
@@ -20,9 +20,9 @@ export function CourseOverview() {
             description="Graphic designing, web development, UI/UX, and SEO — each with clear details, pricing, and a way to get in touch."
           />
         </Reveal>
-        <div className="mt-10 grid auto-rows-fr gap-5 md:grid-cols-2">
+        <div className="mt-10 grid min-w-0 auto-rows-fr gap-5 md:grid-cols-2">
           {courses.map((course, index) => (
-            <Reveal key={course.id} delay={index * 0.05} className="h-full">
+            <Reveal key={course.id} delay={index * 0.05} className="h-full min-w-0">
               <CourseCard course={course} />
             </Reveal>
           ))}

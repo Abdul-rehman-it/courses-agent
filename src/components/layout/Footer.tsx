@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="border-t border-dark-line bg-dark text-cream">
+    <footer className="overflow-x-clip border-t border-dark-line bg-dark text-cream">
       <Container className="py-12">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           <div>
@@ -48,10 +48,10 @@ export function Footer() {
             </p>
             <a
               href={`mailto:${site.email}`}
-              className="mt-4 inline-flex cursor-pointer items-center gap-2 text-sm text-cream/70 hover:text-cream"
+              className="mt-4 inline-flex max-w-full min-w-0 cursor-pointer items-center gap-2 text-sm text-cream/70 hover:text-cream"
             >
-              <Mail size={15} strokeWidth={1.75} />
-              {site.email}
+              <Mail size={15} strokeWidth={1.75} className="shrink-0" />
+              <span className="min-w-0 break-all">{site.email}</span>
             </a>
             <p className="mt-2 text-sm text-cream/50">{site.phone}</p>
           </div>

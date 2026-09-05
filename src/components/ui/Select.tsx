@@ -98,7 +98,7 @@ export function Select({
             animate={{ opacity: 1, y: 0 }}
             exit={reduce ? { opacity: 1 } : { opacity: 0, y: 6 }}
             transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute z-40 mt-2 max-h-64 w-full overflow-auto rounded-[14px] border border-line bg-surface p-1.5 shadow-[var(--shadow-lift)]"
+            className="absolute z-40 mt-2 max-h-64 w-full max-w-full overflow-auto rounded-[14px] border border-line bg-surface p-1.5 shadow-[var(--shadow-lift)]"
           >
             {options.map((option) => {
               const active = option.value === value;

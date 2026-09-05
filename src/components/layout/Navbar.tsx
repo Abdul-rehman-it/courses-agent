@@ -14,17 +14,35 @@ import { useEffect, useState } from "react";
 export function Navbar() {
   const pathname = usePathname();
   const onHome = pathname === "/";
-  const [scrolled, setScrolled] = useState(false);
+  const [overDarkHero, setOverDarkHero] = useState(onHome);
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
-  const solid = scrolled || open || !onHome;
+  const darkBar = onHome && overDarkHero && !open;
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    if (!onHome) {
+      setOverDarkHero(false);
+      return;
+    }
+
+    const hero = document.getElementById("top");
+    if (!hero) {
+      setOverDarkHero(true);
+      return;
+    }
+
+    const update = () => {
+      setOverDarkHero(hero.getBoundingClientRect().bottom > 80);
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [onHome]);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -46,17 +64,17 @@ export function Navbar() {
       <Container className="pt-3 sm:pt-4">
         <div
           className={cn(
-            "pointer-events-auto flex h-[58px] items-center justify-between rounded-[16px] border px-3 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 sm:h-[62px] sm:px-4",
-            solid
-              ? "border-line/80 bg-paper/80 shadow-[0_10px_40px_-24px_rgba(20,18,16,0.45)] backdrop-blur-xl"
-              : "border-white/10 bg-dark/35 backdrop-blur-md",
+            "pointer-events-auto flex h-[58px] items-center justify-between rounded-[16px] border px-3 transition-[background-color,border-color,box-shadow,color,backdrop-filter] duration-300 sm:h-[62px] sm:px-4",
+            darkBar
+              ? "border-white/10 bg-dark/35 backdrop-blur-md"
+              : "border-line/80 bg-paper/95 shadow-[0_10px_40px_-24px_rgba(20,18,16,0.45)] backdrop-blur-xl",
           )}
         >
           <Link
             href="/"
             className={cn(
               "flex cursor-pointer items-center gap-2.5 rounded-[10px] px-1.5 py-1",
-              solid ? "text-ink" : "text-cream",
+              darkBar ? "text-cream" : "text-ink",
             )}
           >
             <span
@@ -80,9 +98,9 @@ export function Navbar() {
                 href={link.href}
                 className={cn(
                   "cursor-pointer rounded-[10px] px-3 py-2 text-sm transition-colors",
-                  solid
-                    ? "text-ink-soft hover:bg-ink/5 hover:text-ink"
-                    : "text-cream/70 hover:bg-white/6 hover:text-cream",
+                  darkBar
+                    ? "text-cream hover:bg-white/6 hover:text-white"
+                    : "text-ink-soft hover:bg-ink/5 hover:text-ink",
                 )}
               >
                 {link.label}
@@ -95,7 +113,7 @@ export function Navbar() {
               <Button
                 href="/#contact"
                 size="sm"
-                variant={solid ? "primary" : "on-dark"}
+                variant={darkBar ? "on-dark" : "primary"}
               >
                 Contact
               </Button>
@@ -104,9 +122,9 @@ export function Navbar() {
               label={open ? "Close menu" : "Open menu"}
               className={cn(
                 "lg:hidden",
-                solid
-                  ? "text-ink hover:bg-ink/6"
-                  : "text-cream hover:bg-white/8",
+                darkBar
+                  ? "text-cream hover:bg-white/8"
+                  : "text-ink hover:bg-ink/6",
               )}
               aria-expanded={open}
               aria-controls="mobile-nav"

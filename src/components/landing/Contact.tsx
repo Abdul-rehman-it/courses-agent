@@ -8,11 +8,11 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="scroll-mt-24 bg-paper py-16 sm:py-20"
+      className="scroll-mt-24 overflow-x-clip bg-paper py-16 sm:py-20"
       aria-labelledby="contact-heading"
     >
       <Container>
-        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+        <div className="grid min-w-0 gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
           <Reveal>
             <p className="text-[0.72rem] font-medium uppercase tracking-[0.18em] text-teal">
               Contact
@@ -30,10 +30,10 @@ export function Contact() {
             <div className="mt-8 grid gap-3">
               <a
                 href={`mailto:${site.email}`}
-                className="inline-flex cursor-pointer items-center gap-3 rounded-[14px] border border-line bg-paper px-4 py-3 text-ink hover:border-line-strong"
+                className="inline-flex max-w-full min-w-0 cursor-pointer items-center gap-3 rounded-[14px] border border-line bg-paper px-4 py-3 text-ink hover:border-line-strong"
               >
-                <Mail size={18} strokeWidth={1.75} />
-                {site.email}
+                <Mail size={18} strokeWidth={1.75} className="shrink-0" />
+                <span className="min-w-0 break-all">{site.email}</span>
               </a>
               <a
                 href={site.phoneHref}

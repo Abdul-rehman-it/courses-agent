@@ -28,14 +28,13 @@ export function Hero() {
       id="top"
       className="relative overflow-hidden bg-dark bg-grid-dark bg-grain text-cream"
     >
-      <div className="orb -left-24 top-10 h-72 w-72 bg-teal/25" aria-hidden />
-      <div
-        className="orb right-[-6rem] top-32 h-80 w-80 bg-copper/18"
-        aria-hidden
-      />
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+        <div className="orb -left-24 top-10 h-72 w-72 bg-teal/25" />
+        <div className="orb right-[-6rem] top-32 h-80 w-80 bg-copper/18" />
+      </div>
 
       <Container className="relative pt-28 pb-14 sm:pt-32 sm:pb-16 lg:pt-36">
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
+        <div className="grid min-w-0 items-center gap-10 lg:grid-cols-2 lg:gap-12">
           <div>
             <motion.p
               custom={0.05}
@@ -90,10 +89,9 @@ export function Hero() {
             initial={reduce ? false : { opacity: 0, scale: 0.98, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.75, delay: reduce ? 0 : 0.18, ease }}
-            className="relative mx-auto w-full max-w-[460px] px-4 sm:px-6 lg:ml-auto"
+            className="relative mx-auto w-full min-w-0 max-w-[460px] overflow-hidden rounded-[20px] lg:ml-auto"
           >
-            <div className="relative overflow-hidden rounded-[20px]">
-              <div className="relative h-[240px] sm:h-[280px] lg:h-[300px]">
+            <div className="relative h-[240px] overflow-hidden sm:h-[280px] lg:h-[300px]">
                 <Image
                   src="/images/hero-learning.jpg"
                   alt="Students learning digital skills together in a studio"
@@ -104,7 +102,6 @@ export function Hero() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark/50 via-dark/10 to-transparent" />
               </div>
-            </div>
             <HeroVisual />
           </motion.div>
         </div>

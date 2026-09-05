@@ -4,10 +4,10 @@ import { cn } from "@/lib/cn";
 import { motion, useReducedMotion } from "motion/react";
 
 const chips = [
-  { label: "Graphic Design", className: "-left-3 top-5 sm:-left-6" },
-  { label: "Web Development", className: "-right-2 top-12 sm:-right-5" },
-  { label: "UI/UX", className: "bottom-[4.5rem] -left-3 sm:-left-7" },
-  { label: "SEO", className: "bottom-6 -right-2 sm:-right-4" },
+  { label: "Graphic Design", className: "left-2 top-3 sm:left-3" },
+  { label: "Web Development", className: "right-2 top-10 sm:right-3" },
+  { label: "UI/UX", className: "bottom-[4.75rem] left-2 sm:left-3" },
+  { label: "SEO", className: "bottom-16 right-2 sm:right-3" },
 ];
 
 export function HeroVisual() {
