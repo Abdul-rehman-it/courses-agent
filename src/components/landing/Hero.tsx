@@ -89,9 +89,10 @@ export function Hero() {
             initial={reduce ? false : { opacity: 0, scale: 0.98, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.75, delay: reduce ? 0 : 0.18, ease }}
-            className="relative mx-auto w-full min-w-0 max-w-[460px] overflow-hidden rounded-[20px] lg:ml-auto"
+            className="relative mx-auto w-full max-w-[460px] px-4 sm:px-6 lg:ml-auto"
           >
-            <div className="relative h-[240px] overflow-hidden sm:h-[280px] lg:h-[300px]">
+            <div className="relative overflow-hidden rounded-[20px]">
+              <div className="relative h-[240px] sm:h-[280px] lg:h-[300px]">
                 <Image
                   src="/images/hero-learning.jpg"
                   alt="Students learning digital skills together in a studio"
@@ -102,6 +103,7 @@ export function Hero() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark/50 via-dark/10 to-transparent" />
               </div>
+            </div>
             <HeroVisual />
           </motion.div>
         </div>
